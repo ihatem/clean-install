@@ -2,14 +2,20 @@
 
 1. Time Machine Backup
 
-2. *Backup/Restore data files* 
+2. Backup/Restore data files
 
 > ~/Desktop 
-~/Documents
-~/Downloads 
-~/Movies
-~/Music
-~/Pictures
+
+> ~/Documents
+
+> ~/Downloads 
+
+> ~/Movies
+
+> ~/Music
+
+> ~/Pictures
+
 
 
 # CLI 
@@ -59,38 +65,71 @@ Preferences > General
 # List of apps
 
 > 1Password 7.app (import .opvault)
-Adobe Acrobat DC
-Adobe Illustrator CC 2018
-Adobe Lightroom Classic CC
-Adobe Photoshop CC 2018
-AllToMP3.app
-Atom.app (install import-settings and sync settings // cf. 1password for Personal Access Token and Gist ID)
-CleanMyMac X.app 
-CodeKit.app
-CraftManager.app
-Dropbox.app
-Firefox.app
-Flux.app
-GitHub Desktop.app
-Grids for Instagram.app
-JDownloader2.app
-KeeWeb.app
-Little Snitch Configuration.app
-MAMP (cf script sync-dropbox-settings.sh)
-Microsoft Excel.app
-Microsoft PowerPoint.app
-Microsoft Word.app
-Molotov.app
-Python 2.7
-Python 3.6
-Reeder.app
-Sketch.app (cf script sync-dropbox-settings.sh)
-The Unarchiver.app
-Transmission.app (cf script sync-dropbox-settings.sh)
-VLC.app
-iStat Menus.app (import settings from Dropbox)
-iTerm.app 
-iTunes.app (backup ~/Music/iTunes/iTunes\ Music\  Library.xml)
+
+> Adobe Acrobat DC
+
+> Adobe Illustrator CC 2018
+
+> Adobe Lightroom Classic CC
+
+> Adobe Photoshop CC 2018
+
+> AllToMP3.app
+
+> Atom.app (install import-settings and sync settings // cf. 1password for Personal Access Token and Gist ID)
+
+> CleanMyMac X.app 
+
+> CodeKit.app
+
+> CraftManager.app
+
+> Dropbox.app
+
+> Firefox.app
+
+> Flux.app
+
+> GitHub Desktop.app
+
+> Grids for Instagram.app
+
+> JDownloader2.app
+
+> KeeWeb.app
+
+> Little Snitch Configuration.app
+
+> MAMP (cf script sync-dropbox-settings.sh)
+
+> Microsoft Excel.app
+
+> Microsoft PowerPoint.app
+
+> Microsoft Word.app
+
+> Molotov.app
+
+> Python 2.7
+
+> Python 3.6
+
+> Reeder.app
+
+> Sketch.app (cf script sync-dropbox-settings.sh)
+
+> The Unarchiver.app
+
+> Transmission.app (cf script sync-dropbox-settings.sh)
+
+> VLC.app
+
+> iStat Menus.app (import settings from Dropbox)
+
+> iTerm.app 
+
+> iTunes.app (backup ~/Music/iTunes/iTunes\ Music\  Library.xml)
+
 
 # Misc 
 
