@@ -57,7 +57,7 @@ ln -s $HOME/Dropbox/Apps/MAMP/de.appsolute.mamppro.plist /Users/Hatem/Library/Pr
 rm /Library/Application\ Support/appsolute/MAMP\ PRO/db
 ln -s $HOME/Dropbox/Apps/MAMP/db/ /Library/Application\ Support/appsolute/MAMP\ PRO
 
-## MAMP PRO sync from Dropbox
+## Sketch sync from Dropbox
 echo "Syncing Sketch settings from Dropbox..."
 rm $HOME/Library/Preferences/com.bohemiancoding.sketch3.plist
 ln -s $HOME/Dropbox/Apps/Sketch/com.bohemiancoding.sketch3.plist /Users/Hatem/Library/Preferences
