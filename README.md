@@ -57,13 +57,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 6. Install fonts 
 - FiraCode - https://github.com/tonsky/FiraCode
 
-7. Sync settings 
-```bash
-Preferences > General
-✅ Load preferences from a custom folder : ~/Dropbox/Apps/iTerm2
-✅ Save changes to folder when iTerm quits
-``` 
-
 
 # List of apps
 
