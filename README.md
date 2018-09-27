@@ -54,7 +54,10 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 -	zsh-syntax-highlighting - https://github.com/zsh-users/zsh-syntax-highlighting
 -	zsh-autosuggestions - https://github.com/zsh-users/zsh-autosuggestions
 
-6. Sync settings 
+6. Install fonts 
+- FiraCode - https://github.com/tonsky/FiraCode
+
+7. Sync settings 
 ```bash
 Preferences > General
 ✅ Load preferences from a custom folder : ~/Dropbox/Apps/iTerm2
