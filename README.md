@@ -131,4 +131,5 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
  - Change DNS - https://lokan.jp/2017/01/06/important-changer-dns/
  - rm and recreate Fusion Drive - https://lokan.jp/2015/10/23/comment-creer-casser-fusion-drive/
+ - unifed hosts file - https://github.com/drduh/macOS-Security-and-Privacy-Guide#hosts-file
 
