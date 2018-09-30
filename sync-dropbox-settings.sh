@@ -25,3 +25,8 @@ sudo ln -s $HOME/Dropbox/Apps/sketch/Plugins $HOME/Library/Application\ Support/
 echo "Syncing Transmission settings from Dropbox..."
 sudo rm $HOME/Library/Preferences/org.m0k.transmission.plist
 sudo ln -s $HOME/Dropbox/Apps/Transmission/org.m0k.transmission.plist $HOME/Library/Preferences
+
+## Amphetamine sync from Dropbox
+echo "Syncing Transmission settings from Dropbox..."
+sudo rm $HOME/Library/Preferences/com.if.Amphetamine.plist
+sudo ln -s $HOME/Dropbox/Apps/Transmission/com.if.Amphetamine.plist $HOME/Library/Preferences
