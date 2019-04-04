@@ -13,7 +13,7 @@ sudo ln -s $HOME/Dropbox/Apps/MAMP/de.appsolute.mamppro.plist $HOME/Library/Pref
 sudo rm -r /Library/Application\ Support/appsolute/MAMP\ PRO/db
 sudo ln -s $HOME/Dropbox/Apps/MAMP/db/ /Library/Application\ Support/appsolute/MAMP\ PRO
 
-## MAMP PRO sync from Dropbox
+## SKETCH sync from Dropbox
 echo "Syncing Sketch settings from Dropbox..."
 sudo rm $HOME/Library/Preferences/com.bohemiancoding.sketch3.plist
 sudo ln -s $HOME/Dropbox/Apps/Sketch/com.bohemiancoding.sketch3.plist $HOME/Library/Preferences
