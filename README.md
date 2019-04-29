@@ -54,6 +54,7 @@ cp ~/.gitconfig ~/Dropbox/Apps/git
 > Backup settings to ~/Dropbox/Apps/ublock/my-ublock-backup.txt
 
 ## Backup script 
+backup.sh
 ```bash 
 #!/bin/bash
 echo  "Copying files to Time Machine volume..."
@@ -197,7 +198,8 @@ curl https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee
 
 ### [Change DNS](https://lokan.jp/2017/01/06/important-changer-dns/)
 
-## Backup script 
+## Restore script 
+restore.sh
 ```bash 
 #!/bin/bash
 # delete default settings and sync from dropbox
