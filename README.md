@@ -5,7 +5,7 @@
 	2. [Configurations](#configurations)
 	3. [Backup script](#backup-script)
 2. [Restore](#restore)
-	1. [Applications](#subparagraph1)
+	1. [Applications](#applications)
 	2. [CLI](#cli)
 	3. [Misc](#misc)
 	4. [Restore script](#restore-script)
