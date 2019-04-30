@@ -3,12 +3,11 @@
 1. [Backup](#backup)
 	1. [Data](#data)
 	2. [Configurations](#configurations)
-	3. [Backup script](#backup-script)
 2. [Restore](#restore)
 	1. [Applications](#applications)
 	2. [CLI](#cli)
-	3. [Misc](#misc)
-	4. [Restore script](#restore-script)
+	3. [Misc](#misc) 
+3. [Scripts](#scripts)
     
     
 # Backup
@@ -66,33 +65,42 @@ cp ~/.gitconfig ~/Dropbox/Apps/git
 ### uBlock origin 
 > Backup settings to ~/Dropbox/Apps/ublock/my-ublock-backup.txt
 
-## Backup script 
-backup.sh
-```bash 
-#!/bin/bash
-echo  "Copying files to Time Machine volume..."
-cp -v -R ~/Desktop ~/Documents ~/Downloads ~/Movies ~/Music ~/Pictures ~/Work /Volumes/Time\ Machine
-echo
-echo  "Saving applications names to apps-list.txt..."
-ls -1 /Applications | sed -e 's/\..*$//'  >  ~/Dropbox/Apps/apps-list.txt
-echo
-echo  "Saving NPM packages names to packages-list.txt..."
-# list npm global packages | regex match only packages name | save into npm.txt
-npm -g list --depth 0 | xp -o '([a-zA-Z@_/-]+)(?=@)'  >  ~/Dropbox/Apps/npm/packages-list.txt
-echo
-echo  "Bundle Brewfile..."
-brew bundle dump
-echo
-echo  "Backup Brewfile to dropbox..."
-cp -v ~/Brewfile ~/Dropbox/Apps/Homebrew/
-echo
-echo  "Backup .zshrc to dropbox..."
-cp -v ~/.zshrc ~/Dropbox/Apps/zsh
-echo
-echo  "Backup .gitconfig to dropbox..."
-cp -v ~/.gitconfig ~/Dropbox/Apps/git
-```
 # Restore 
+
+## Reinstall macOs
+
+### Create bootable usb 
+
+```bash 
+sudo /Applications/Install\ macOS\ Mojave.app/Contents/Resources/createinstallmedia --volume /Volumes/UNTITLED && echo Mojave Drive Created
+```
+
+### Format disk and create coreStorage container (Fusion Drive)
+
+> Format Disk
+```bash 
+diskutil list
+```
+if coreStorage exists : 
+```bash 
+diskutil coreStorage delete lvgUUID
+```
+```bash 
+diskutil list
+```
+```bash 
+diskutil coreStorage create "Fusion Drive" /dev/disk0 /dev/disk1
+```
+```bash 
+diskutil coreStorage createVolume lvgUUID jhfs+ "Macintosh" 100%
+```
+
+
+
+```bash 
+sudo /Applications/Install\ macOS\ Mojave.app/Contents/Resources/createinstallmedia --volume /Volumes/UNTITLED && echo Mojave Drive Created
+```
+
 
 ## Applications 
 
@@ -140,6 +148,11 @@ sudo ln -s ~/Dropbox/Apps/Transmission/org.m0k.transmission.plist ~/Library/Pref
 
 ## CLI
 
+### Command line tools 
+```bash 
+xcode-select --install
+```
+
 ### Finder 
 ```bash 
 # show hidden files
@@ -186,17 +199,13 @@ cp ~/Dropbox/Apps/git/.gitconfig ~
 ```
 
 ### npm 
-[Resolving EACCES permissions errors when installing packages globally](https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally)
+install npm global packages
 ```bash 
-mkdir ~/.npm-global
-npm config set prefix '~/.npm-global'
-```
-```bash 
-# Install missing npm global packages
-echo  "Install missing packages ..."
-for  PACKAGE  in  `cat ~/Dropbox/Apps/npm/packages-list.txt`;  do
-	npm install -g ${PACKAGE}
-done
+echo "Giving access to npm..."
+sudo chown -R $USER:$GROUP ~/.npm
+sudo chown -R $USER:$GROUP ~/.config
+echo "Install npm global packages ..."
+cat ~/Dropbox/Apps/npm/packages-list.txt | xargs npm install -g
 ```
 
 
@@ -211,80 +220,7 @@ curl https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee
 
 ### [Change DNS](https://lokan.jp/2017/01/06/important-changer-dns/)
 
-## Restore script 
-restore.sh
-```bash 
-#!/bin/bash
-# delete default settings and sync from dropbox
-echo  "delete default settings and sync from dropbox..."
-echo
-echo  "Sync settings for iTerm2..."
-## iTerm2
-sudo rm ~/Library/Preferences/com.googlecode.iterm2.plist
-sudo ln -s ~/Dropbox/Apps/iTerm2/com.googlecode.iterm2.plist ~/Library/Preferences
-echo
-echo  "Sync settings for Spectacle..."
-## Spectacle
-sudo rm ~/Library/Application\ Support/Spectacle/Shortcuts.json
-sudo ln -s ~/Dropbox/Apps/Spectacle/Shortcuts.json ~/Library/Application\ Support/Spectacle/
-echo
-echo  "Sync settings for Sketch..."
-## Sketch
-sudo rm ~/Library/Preferences/com.bohemiancoding.sketch3.plist
-sudo ln -s ~/Dropbox/Apps/Sketch/com.bohemiancoding.sketch3.plist ~/Library/Preferences
-echo
-echo  "Sync plugins folder for Sketch..."
-## Sketch Plugins
-sudo rm -r ~/Library/Application\ Support/com.bohemiancoding.sketch3/Plugins
-sudo ln -s ~/Dropbox/Apps/sketch/Plugins ~/Library/Application\ Support/com.bohemiancoding.sketch3
-echo
-echo  "Sync settings for Transmission..."
-## Transmission
-sudo rm ~/Library/Preferences/org.m0k.transmission.plist
-sudo ln -s ~/Dropbox/Apps/Transmission/org.m0k.transmission.plist ~/Library/Preferences
-echo
-echo  "Show hidden files..."
-# show hidden files
-defaults write com.apple.finder AppleShowAllFiles YES
-echo
-echo  "Install oh-my-zsh..."
-# install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-echo
-echo  "Restore .zshrc file..."
-# restore zsh settings
-cp -v ~/Dropbox/Apps/zsh/.zshrc ~
-echo
-echo  "Install bullet train theme for oh-my-zsh..."
-# install bullet train theme
-wget https://raw.githubusercontent.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme -P $ZSH_CUSTOM/themes/
-echo
-echo  "Restore .gitconfig file..."
-# restore git settings
-cp -v ~/Dropbox/Apps/git/.gitconfig ~
-echo
-echo  "Install Homebrew..."
-# install brew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-echo
-echo  "Restore Homebrew Brewfile..."
-# restore brew packages
-cp -v ~/Dropbox/Apps/Homebrew/Brewfile ~
-brew bundle
-echo
-echo  "Resolving EACCES permissions errors for NPM..."
-# Resolving EACCES permissions errors when installing packages globally
-mkdir ~/.npm-global
-npm config set prefix '~/.npm-global'
-echo
-echo  "Install missing NPM packages..."
-# Install missing npm global packages
-for  PACKAGE  in  `cat ~/Dropbox/Apps/npm/packages-list.txt`;  do
-	npm install -g ${PACKAGE}
-done;
-echo
-echo  "Download and tee hosts file..."
-# Unifed hosts file
-curl https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee -a /etc/hosts
-exit;
-```
+# Scripts 
+## [Backup Script](https://github.com/ihatem/clean-install/blob/master/backup.sh)
+## [Restore Script](https://github.com/ihatem/clean-install/blob/master/restore.sh)
+

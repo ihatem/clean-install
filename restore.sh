@@ -1,6 +1,24 @@
 #!/bin/bash
 
+# install command line tools
+echo 
+echo "Install command line tools..." 
+xcode-select --install
+
+# vs code restore
+echo 
+echo "Install Homebrew..."
+# install brew
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+echo 
+echo "Restore Homebrew Brewfile..."
+# restore brew packages
+cp -v ~/Dropbox/Apps/Homebrew/Brewfile ~
+brew bundle
+
 # delete default settings and sync from dropbox
+echo 
 echo "delete default settings and sync from dropbox..."
 echo 
 echo "Sync settings for iTerm2..."
@@ -53,33 +71,24 @@ echo "Install bullet train theme for oh-my-zsh..."
 wget https://raw.githubusercontent.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme -P $ZSH_CUSTOM/themes/
 
 echo 
+echo "Install zsh plugins..."
+# install zsh plugins
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+echo 
 echo "Restore .gitconfig file..."
 # restore git settings
 cp -v ~/Dropbox/Apps/git/.gitconfig ~
 
-echo 
-echo "Install Homebrew..."
-# install brew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-echo 
-echo "Restore Homebrew Brewfile..."
-# restore brew packages
-cp -v ~/Dropbox/Apps/Homebrew/Brewfile ~
-brew bundle
-
-echo 
-echo "Resolving EACCES permissions errors for NPM..."
-# Resolving EACCES permissions errors when installing packages globally
-mkdir ~/.npm-global
-npm config set prefix '~/.npm-global'
-
-echo 
-echo "Install missing NPM packages..."
-# Install missing npm global packages
-for  PACKAGE  in  `cat ~/Dropbox/Apps/npm/packages-list.txt`;  do
-	npm install -g ${PACKAGE}
-done;
+# install npm global packages
+echo
+echo "Giving access to npm..."
+sudo chown -R $USER:$GROUP ~/.npm
+sudo chown -R $USER:$GROUP ~/.config
+echo
+echo "Install npm global packages ..."
+cat ~/Dropbox/Apps/npm/packages-list.txt | xargs npm install -g
 
 echo 
 echo "Download and tee hosts file..."
