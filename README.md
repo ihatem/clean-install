@@ -33,11 +33,17 @@ cp -v -R ~/Desktop ~/Documents ~/Downloads ~/Movies ~/Music ~/Pictures ~/Work /V
 ls -1 /Applications | sed -e 's/\..*$//' > ~/Dropbox/Apps/apps-list.txt
 ```
 
-### NPM Global packages
+### npm Global packages
 
 ```bash 
 # list npm global packages | regex match only packages name | save into npm.txt
-npm -g list --depth 0 | xp -o '([a-zA-Z@_/-]+)(?=@)' > ~/Dropbox/Apps/npm/packages-list.txt
+npm -g list --depth 0 | xp -o '([a-zA-Z@_/-]+)(?=@)' > ~/Dropbox/Apps/npm/npm-packages-list.txt
+```
+
+### Yarn Global packages
+
+```bash 
+cp $(yarn global dir)/package.json ~/Dropbox/Apps/npm/yarn-packages-list.txt
 ```
 
 ### brew packages
@@ -205,7 +211,12 @@ echo "Giving access to npm..."
 sudo chown -R $USER:$GROUP ~/.npm
 sudo chown -R $USER:$GROUP ~/.config
 echo "Install npm global packages ..."
-cat ~/Dropbox/Apps/npm/packages-list.txt | xargs npm install -g
+cat ~/Dropbox/Apps/npm/npm-packages-list.txt | xargs npm install -g
+```
+
+### yarn 
+```bash 
+npx yarn-global-restore ~/Dropbox/Apps/npm/yarn-packages-list.txt --keep-versions
 ```
 
 
