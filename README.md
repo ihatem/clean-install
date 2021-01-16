@@ -43,7 +43,7 @@ npm -g list --depth 0 | xp -o '([a-zA-Z@_/-]+)(?=@)' > ~/Dropbox/Apps/npm/npm-pa
 ### Yarn Global packages
 
 ```bash 
-cp $(yarn global dir)/package.json ~/Dropbox/Apps/npm/yarn-packages-list.txt
+cp $(yarn global dir)/package.json ~/Dropbox/Apps/npm/ && mv ~/Dropbox/Apps/npm/package.json ~/Dropbox/Apps/npm/yarn-package.json
 ```
 
 ### brew packages
@@ -216,7 +216,7 @@ cat ~/Dropbox/Apps/npm/npm-packages-list.txt | xargs npm install -g
 
 ### yarn 
 ```bash 
-npx yarn-global-restore ~/Dropbox/Apps/npm/yarn-packages-list.txt --keep-versions
+npx yarn-global-restore ~/Dropbox/Apps/npm/yarn-package.json --keep-versions
 ```
 
 
