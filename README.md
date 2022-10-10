@@ -52,6 +52,19 @@ brew bundle dump
 cp ~/Brewfile ~/Dropbox/Apps/Homebrew/
 ```
 
+### Thunderbird 
+> 1. Connect a device for data transfer, either a local one such as a USB flash drive, or a remote storage drive.
+> 2. Open the Help menu and select Troubleshooting Information.
+> 3. Locate the "Profile Folder" entry, then click Show in Finder.
+> Your Thunderbird profile folder will open in Finder.
+> 5. Quit Thunderbird.
+> 6. From your Thunderbird profile folder in Finder, open the Go menu and select Enclosing Folder two times.
+> 7. Hold down the control key while you click on the Thunderbird folder and select Copy "Thunderbird".
+> 8. Hold down the control key while you click the device you are using to transfer your data, then select Paste Item.
+> 9. If you are using a local transfer device, remove it safely from the source computer.
+
+Source: https://support.mozilla.org/en-US/kb/moving-thunderbird-data-to-a-new-computer
+
 ## Configurations
 
 ### iTerm2
@@ -70,6 +83,30 @@ cp ~/.gitconfig ~/Dropbox/Apps/git
 
 ### uBlock origin 
 > Backup settings to ~/Dropbox/Apps/ublock/my-ublock-backup.txt
+
+### Tunnelblick 
+>Export all configurations and settings on a computer by clicking the "Export Tunnelblick Setup" on the "Utilities" panel of Tunnelblick's "VPN Details" window.
+>
+>Important: Saved usernames and passwords are not exported.
+>
+>Tunnelblick will create a compressed ".tar.gz" file on your Desktop named "Tunnelblick Setup" followed by the date and time. The file can be expanded into a Tunnelblick Setup file (with ".tar.gz" changed to ".tblkSetup") by double-clicking it. (A compressed file is created because it is much smaller than the uncompressed version.)
+>
+>Source: https://tunnelblick.net/cExportingAndImportingTunnelblickSetups.html
+
+Plus, export username and password from Keychain
+
+### Carbon Copy Cleaner
+> If you wish to migrate your tasks from CCC on one system to CCC on another system, follow these steps:
+>
+> Choose Export All Tasks from CCC's Task menu.
+> Specify a name for the exported settings file and a location where to save it.
+> Transfer the exported settings file to another Mac.
+> Install CCC onto the other Mac
+> Double-click the exported settings file.
+> As prompted, review the task settings and reset the source/destination selections as necessary.
+
+Source: https://bombich.com/kb/ccc6/migrating-ccc-tasks-from-one-system-another
+
 
 # Restore 
 
@@ -124,6 +161,15 @@ sudo rm ~/Library/Preferences/com.googlecode.iterm2.plist
 sudo ln -s ~/Dropbox/Apps/iTerm2/com.googlecode.iterm2.plist ~/Library/Preferences
 ```
 
+### Cyberduck
+```
+ln -s /Users/hatem/Library/CloudStorage/Dropbox/Apps/cyberduck/Transfers /Users/hatem/Library/Group\ Containers/G69SCX94XU.duck/Library/Application\ Support/duck/Transfers
+ln -s /Users/hatem/Library/CloudStorage/Dropbox/Apps/cyberduck/Sessions /Users/hatem/Library/Group\ Containers/G69SCX94XU.duck/Library/Application\ Support/duck/Sessions
+ln -s /Users/hatem/Library/CloudStorage/Dropbox/Apps/cyberduck/History /Users/hatem/Library/Group\ Containers/G69SCX94XU.duck/Library/Application\ Support/duck/History
+ln -s /Users/hatem/Library/CloudStorage/Dropbox/Apps/cyberduck/Bookmarks /Users/hatem/Library/Group\ Containers/G69SCX94XU.duck/Library/Application\ Support/duck/Bookmarks
+```
+Source: https://docs.cyberduck.io/cyberduck/faq/#preferences-and-application-support-files-location
+
 ### Spectacles 
 ```bash 
 # delete default settings and sync from dropbox
@@ -163,6 +209,9 @@ xcode-select --install
 ```bash 
 # show hidden files
 defaults write com.apple.finder AppleShowAllFiles YES
+# remove hidding dock animation delay
+defaults write com.apple.dock autohide-delay -float 0
+defaults write com.apple.dock autohide-time-modifier -float 0.4; killall Dock
 ```
 
 
@@ -234,4 +283,3 @@ curl https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee
 # Scripts 
 ## [Backup Script](https://github.com/ihatem/clean-install/blob/master/backup.sh)
 ## [Restore Script](https://github.com/ihatem/clean-install/blob/master/restore.sh)
-
